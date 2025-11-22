@@ -80,27 +80,6 @@ If you're building for ACRealms instead of ACEmulator, the paths are set separat
 </PropertyGroup>
 ```
 
-### Verifying Paths Are Correct
-
-After updating paths, verify they work:
-
-1. Run `dotnet restore HelloWorld.sln` - this will download NuGet dependencies
-2. Check that the ACE DLL folder actually exists and contains `.dll` files
-3. Run `dotnet build HelloWorld.sln` - if it fails, check the error messages for path issues
-4. Verify the output folder was created and contains `HelloWorld.dll`
-
-## Renaming This Mod
-
-To create a new mod, rename this project:
-
-1. Update `Mod.cs` - change namespace and class name
-2. Update `PatchClass.cs` - change namespace
-3. Update `Meta.json` - change the "Name" field
-4. Rename `HelloWorld.csproj` to your mod name
-5. Rename `HelloWorld.sln` to your mod name
-6. Update `.sln` to reference the new `.csproj` name
-7. Update `OutputPath` in `.csproj` if needed
-
 ## Adding Your Own Code
 
 1. Open `PatchClass.cs` and add your Harmony patches and commands
