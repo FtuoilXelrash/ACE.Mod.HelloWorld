@@ -138,9 +138,3 @@ To customize the message or add more functionality:
 
 - **Harmony Documentation**: https://harmony.pardeike.net/
 - **ACE.Shared Helpers**: Check the ACE-master repo for extension methods
-
-## Notes
-
-- This project is completely standalone and independent from ACE.BaseMod
-- It uses NuGet packages (ACEmulator.ACE.Shared, Lib.Harmony)
-- Supports both ACEmulator and ACRealms via conditional compilation (see REALM constant)
