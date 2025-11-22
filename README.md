@@ -42,10 +42,6 @@ If your ACE DLLs are in a different location:
 </PropertyGroup>
 ```
 
-**Common locations:**
-- Debug build: `D:\DEV\ACE SERVER\ACE-CONTRIB\ACE-master\Source\ACE.Server\bin\x64\Debug\net8.0`
-- Release build: `D:\DEV\ACE SERVER\ACE-CONTRIB\ACE-master\Source\ACE.Server\bin\x64\Release\net8.0`
-
 ### Changing the Build Output Path
 
 If you want compiled DLLs to go to a different folder:
