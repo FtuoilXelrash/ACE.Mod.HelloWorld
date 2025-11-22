@@ -27,6 +27,83 @@ dotnet build HelloWorld.sln -c Release
 
 Build output goes to: `D:\DEV\ACE SERVER\ACHARD-TEST\MODS\HelloWorld\`
 
+## Configuring Build and Dependency Paths
+
+The project is configured for a specific directory structure. If your paths differ, you'll need to update the `.csproj` file.
+
+### Current Configuration
+
+The `.csproj` file contains these key paths:
+
+```xml
+<!-- Where ACE DLL dependencies are located -->
+<ACEPath>D:\DEV\ACE SERVER\ACE-CONTRIB\ACE-master\Source\ACE.Server\bin\x64\Debug\net8.0</ACEPath>
+
+<!-- Where compiled DLLs are output -->
+<OutputPath>D:\DEV\ACE SERVER\ACHARD-TEST\MODS\$(AssemblyName)</OutputPath>
+```
+
+### Changing the Dependency Path (ACE DLLs)
+
+If your ACE DLLs are in a different location:
+
+1. Open `HelloWorld.csproj` in a text editor
+2. Find the `<PropertyGroup>` section with `<ACEPath>`
+3. Update the path to where your ACE assemblies are located:
+
+```xml
+<PropertyGroup Condition="!$(Realms)">
+    <ACEPath>D:\YOUR\PATH\TO\ACE\DLL\FOLDER</ACEPath>
+</PropertyGroup>
+```
+
+**Common locations:**
+- Debug build: `D:\DEV\ACE SERVER\ACE-CONTRIB\ACE-master\Source\ACE.Server\bin\x64\Debug\net8.0`
+- Release build: `D:\DEV\ACE SERVER\ACE-CONTRIB\ACE-master\Source\ACE.Server\bin\x64\Release\net8.0`
+
+### Changing the Build Output Path
+
+If you want compiled DLLs to go to a different folder:
+
+1. Open `HelloWorld.csproj` in a text editor
+2. Find the `<PropertyGroup>` section with `<OutputPath>`
+3. Change it to your desired output location:
+
+```xml
+<OutputPath>D:\YOUR\MOD\OUTPUT\PATH\$(AssemblyName)</OutputPath>
+```
+
+The `$(AssemblyName)` variable will be replaced with your project's assembly name (usually the `.csproj` filename without extension).
+
+**For example:**
+- `D:\TEMP\Mods\$(AssemblyName)` → outputs to `D:\TEMP\Mods\HelloWorld\`
+- `C:\MyMods\$(AssemblyName)` → outputs to `C:\MyMods\HelloWorld\`
+
+### For ACRealms Projects
+
+If you're building for ACRealms instead of ACEmulator, the paths are set separately:
+
+1. Uncomment this line in `.csproj`:
+```xml
+<DefineConstants>$(DefineConstants);REALM</DefineConstants>
+```
+
+2. Update the Realms-specific ACE path:
+```xml
+<PropertyGroup Condition="$(Realms)">
+    <ACEPath>D:\YOUR\PATH\TO\REALMSERVER\DLL\FOLDER</ACEPath>
+</PropertyGroup>
+```
+
+### Verifying Paths Are Correct
+
+After updating paths, verify they work:
+
+1. Run `dotnet restore HelloWorld.sln` - this will download NuGet dependencies
+2. Check that the ACE DLL folder actually exists and contains `.dll` files
+3. Run `dotnet build HelloWorld.sln` - if it fails, check the error messages for path issues
+4. Verify the output folder was created and contains `HelloWorld.dll`
+
 ## Renaming This Mod
 
 To create a new mod, rename this project:
