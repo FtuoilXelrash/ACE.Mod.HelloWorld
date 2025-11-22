@@ -12,21 +12,6 @@ This mod sends a "Hello World!" message to players when they log in.
 - **Meta.json** - Mod metadata
 - **Settings.json** - Your mod settings (auto-generated at runtime)
 
-## Building
-
-```bash
-# First time: restore NuGet packages
-dotnet restore HelloWorld.sln
-
-# Build
-dotnet build HelloWorld.sln
-
-# Build in Release mode (creates ZIP)
-dotnet build HelloWorld.sln -c Release
-```
-
-Build output goes to: `D:\DEV\ACE SERVER\ACHARD-TEST\MODS\HelloWorld\`
-
 ## Configuring Build and Dependency Paths
 
 The project is configured for a specific directory structure. If your paths differ, you'll need to update the `.csproj` file.
